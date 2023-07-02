@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+
+    <div class="jumbotron">
+        <center> <p class="display-6">Vendors Details</p></center>
+
+    </div>
+
+    <ul id="vendor" class="list-group">
+    </ul>
+</div>
+
+
+<script src="~/Scripts/toastr.js"></script>
+<script type="text/javascript">
+        $(document).ready(() => {
+            console.log(@ViewBag.UserId)
+            GetVendorDetails();
+        })
+
+        const GetVendorDetails = () => {
+
+            $.ajax({
+                url: `/Admin/GetVendorDetailsById/${@ViewBag.UserId}`,   //url of {controller/action}
+                type: "get",  //type of request (http verb)
+                success: (response) => {
+                    console.log(response)
+
+
+                    const vendor_details = response[0];
+                    console.log(vendor_details)
+                    $('#vendor').append(` <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Name
+                            <span>${vendor_details.FirstName + " " + vendor_details.LastName}</span></li>`)
+
+                    $('#vendor').append(` <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Category
+                            <span>${vendor_details.Category}</span></li>`)
+
+                        $('#vendor').append(` <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Contact Number
+                            <span>${vendor_details.ContactNumber}</span></li>`)
+
+                             $('#vendor').append(` <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Address
+                            <span>${vendor_details.Address}</span></li>`)
+
+                                 $('#vendor').append(` <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Map Location
+                            <span>${vendor_details.Maplocation}</span></li>`)
+                                          $('#vendor').append(` <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Username
+                            <span>${vendor_details.UserName}</span></li>`)
+                },
+                error: (xhr) => {
+                    //on error response
+                }
+            });
+
+        }
+
+</script>

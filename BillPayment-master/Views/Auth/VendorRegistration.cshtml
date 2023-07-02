@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "VendorRegistration";
+}
+
+@model BillPayment.Models.User
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            @using (Html.BeginForm("VendorRegistration", "Auth", FormMethod.Post))
+            {
+                <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h1>Register</h1>
+                            <p class="text-h3">
+                                You're registering as a Vendor. If you already have an account @Html.ActionLink("Click here to login", "VendorLogin",
+new { controller = "Auth" },
+new { @class = "nav-link" })
+                            </p>
+                        </div>
+                    </div>
+                    @if (ViewBag.ResultVR == false)
+                    {
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Oh snap!!</strong>Failed! @ViewBag.errorVR
+                        </div>
+                    }
+                    else if (ViewBag.ResultVR == true)
+                    {
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Congratulations! You have been successfully registered.Please wait for the admin approval</strong>
+                        </div>
+                    }
+                    <center>
+                        <img class="img-class custom-img-1" src="@Url.Content("~/Content/Images/registration.svg")" />
+                    </center>
+                    <div class="row align-items-center mt-4">
+
+
+                        <div class="col">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required", type = "text", placeholder = "First Name", pattern = "[a-zA-Z]{2,}" })
+                            <p class="was-validated-j">First name should contain only characters</p>
+
+                        </div>
+                        <div class="col">
+
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required", type = "text", placeholder = "Last Name", pattern = "[A-Z][a-z]*" })
+                            <p class="was-validated-j">Last name should contain only characters</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col mt-4">
+                            @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control", required = "required", type = "phone", placeholder = "Contact Number", pattern = @"^([0-9]{10})$" })
+                            <p class="was-validated-j">Please enter a 10 digit valid Phone number</p>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col mt-4">
+                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control", required = "required", type = "text", placeholder = "Address" })
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+
+
+                        <div class="col">
+                            @Html.TextBoxFor(m => m.Maplocation, new { @class = "form-control", required = "required", type = "text", placeholder = "Map Location" })
+
+
+                        </div>
+                        <div class="col">
+                            @Html.DropDownListFor(m => m.Category, new List<SelectListItem> {
+                           new SelectListItem { Value = "Electricity" , Text = "Electricity" },
+                           new SelectListItem { Value = "Telephone" , Text = "Telephone" },
+                           new SelectListItem { Value = "DTH" , Text = "DTH" },
+                           new SelectListItem { Value = "Insurance" , Text = "Insurance" },
+                           new SelectListItem { Value = "Tax" , Text = "Tax" },
+                           new SelectListItem { Value = "Credit Card" , Text = "Credit Card" },
+                           new SelectListItem { Value = "Loan Account" , Text = "Loan Account" },
+                           new SelectListItem { Value = "Others" , Text = "Others" }
+                        }, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+
+                    <div class="row align-items-center mt-4">
+
+
+                        <div class="col">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", required = "required", type = "text", placeholder = "Username", pattern = "^[a-zA-Z]([._-]?[a-zA-Z0-9]+)*$" })
+                            <p class="was-validated-j">Username should not start with number!</p>
+
+                        </div>
+                        <div class="col">
+                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", required = "required", type = "password", placeholder = "Password", pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" })
+                            <p class="was-validated-j">8-12 Char,1special,1Caps,1small</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end mt-4">
+                        <div class="col form-btn">
+                            <div class="spinner" style=font-size:16px></div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(document).ready(() => {
+        $(".spinner").hide()
+
+        $("form").submit(function () {
+            $(".spinner").show()
+            $("button").hide()
+
+        });
+    })
+    if (@Html.Raw(Json.Encode(ViewBag.ResultVR))===false)
+    {
+        $(".spinner").hide()
+        $("button").show()
+    }
+
+
+</script>
+
+
+

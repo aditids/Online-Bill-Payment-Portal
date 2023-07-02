@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Customer";
+}
+<div class="container">
+
+   
+    <div class=" h-100 d-flex justify-content-center align-items-center flex-column">
+        <center>
+            <img class="img-class custom-img-1" src="@Url.Content("~/Content/Images/payment1.svg")" />
+        </center>
+        <h2>Hi, @Session["fullname"]</h2>
+        <p class="text-muted text-center">Reign on with the services</p>
+        @*<p class="text-primary text-center">Reign on with the services</p>*@
+        <br />
+        <button type="button" class="btn btn-primary btn-lg my-btn" onclick="location.href='/Customer/PayBill'">Pay now</button>
+    </div>
+    </div>

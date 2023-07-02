@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron home-container">
+    <div class="home-container-img">
+        <img class="img-class-2" src="@Url.Content("~/Content/Images/payment2.svg")" />
+    </div>
+    <div class="home-container-buttons-main">
+        <h4>Bill Payment</h4>
+        <br />  
+        <p>Please select your role &nbsp;</p>
+        <div class="button-classes">
+            <button type="button" class="btn btn-success"
+                    onclick="@("window.location.href='" + @Url.Action("CustomerLogin", "Auth") + "'");">
+                Customer
+            </button>
+            <button type="button" class="btn btn-info"
+                    onclick="@("window.location.href='" + @Url.Action("VendorLogin", "Auth") + "'");">
+                Vendor
+            </button>
+            <button type="button" class="btn btn-primary"
+                    onclick="@("window.location.href='" + @Url.Action("AdminLogin", "Auth") + "'");">
+                Admin
+            </button>
+        </div>
+
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">What we provide?</div>
+            <div class="card-body">
+                <ul class="card-text">
+                    <li>Admin facility</li>
+                    <li>UPI Payments, Net-Banking, Credit/Debit Card</li>
+                    <li>Payment tracking</li>
+
+                </ul>
+                
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

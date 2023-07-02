@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+}
+
+@model BillPayment.Models.User
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            @using (Html.BeginForm("Profile", "Vendor", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.UserId)
+                <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+
+                    @if (ViewBag.success == true)
+                    {
+
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Details updated successfully</strong>
+                    </div>
+
+                    }
+                    <center>
+                        <h4>Change your profile details</h4>
+                    </center>
+                    <br /><br />
+                    <div class="row align-items-center mt-4">
+
+
+                        <div class="col">
+                            <label>Firstname</label>
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            <p class="was-validated-j">First name should contain only characters</p>
+
+                        </div>
+                        <div class="col">
+
+                            <label>Lastname</label>
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            <p class="was-validated-j">Last name should contain only characters</p>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col mt-4">
+                            <label>Contact number</label>
+                            @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                            <p class="was-validated-j">Please enter valid 10 digit Phone number</p>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col mt-4">
+                            <label>Address</label>
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center mt-4">
+
+
+                        <div class="col">
+                            <label>Maplocation</label>
+                            @Html.EditorFor(model => model.Maplocation, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Maplocation, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col">
+                            <label>Category</label>
+                            @Html.DropDownListFor(m => m.Category, new List<SelectListItem> {
+                           new SelectListItem { Value = "Electricity" , Text = "Electricity" },
+                           new SelectListItem { Value = "Telephone" , Text = "Telephone" },
+                           new SelectListItem { Value = "DTH" , Text = "DTH" },
+                           new SelectListItem { Value = "Insurance" , Text = "Insurance" },
+                           new SelectListItem { Value = "Tax" , Text = "Tax" },
+                           new SelectListItem { Value = "Credit Card" , Text = "Credit Card" },
+                           new SelectListItem { Value = "Loan Account" , Text = "Loan Account" },
+                           new SelectListItem { Value = "Others" , Text = "Others" }
+                        }, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="row justify-content-end mt-4">
+                        <div class="col form-btn">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+

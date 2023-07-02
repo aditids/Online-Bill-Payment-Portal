@@ -1,0 +1,226 @@
+﻿
+
+body, html {
+    height: 100%;
+  
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.jumbotron {
+    padding: 2em;
+    margin-top:5em;
+}
+
+form {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top:3em;
+}
+.login-a {
+    cursor:pointer;
+    color: blue;
+    font-weight:550;
+}
+.form-btn {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.radio-custom {
+    display: flex;
+    justify-self: center;
+    flex-direction: row;
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.clickhere{
+    display:flex;
+    justify-content:center;
+    
+}
+
+fieldset {
+    overflow: hidden
+}
+
+.some-class {
+    float: left;
+    clear: none;
+    display: flex;
+    align-items: center;
+    margin-top:2em;
+}
+.some-class label,p {
+margin:0;
+margin-left:0.5em;
+margin-right:0.5em;
+
+}
+    .some-class label {
+    cursor:pointer;
+    }
+
+
+    input[type=radio],
+    input.radio {
+        float: left;
+        clear: none;
+        margin: 2px 0 0 2px;
+    }
+
+.custom-lead{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.custom-lead div {
+    margin-top:1em;
+}
+
+.select-bill-main {
+margin-top:3em;
+display:flex;
+flex-direction:column;
+}
+.header-payment {
+margin-top:3em;
+}
+.payment-div-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top:0.5em;
+}
+.payment-div-main a {
+        padding-left: 1.5em;
+        padding-right: 1.5em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        text-decoration: none;
+        border: 1px solid #4582ec;
+        border-radius: 1.078em;
+        margin:0.5em;
+}
+.payment-div-active-inactive {
+    color: #4582ec;
+    background-color: white;
+}
+.payment-div-active {
+    color: white;
+    background-color: #4582ec;
+}
+    .payment-div-active:hover {
+    color:white;
+    }
+
+
+#creditcard {
+    width: 600px;
+    height: 300px;
+    font-family: "Arial", sans-serif;
+   
+}
+
+#top-card {
+    background-color: #4582ec;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #d7eefe;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+.center-card {
+padding:1em;
+}
+#paytm-div {
+    display:flex;
+    flex-direction:column;
+}
+
+.was-validated-j
+{
+    font-size:0.75rem;
+    color:gray;
+}
+.img-class {
+    height: 10em;
+    width: 10em;
+    margin-top: 2em;
+}
+.custom-img-1 {
+    margin-left: -13px;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    /* box-shadow: 0 1px 3px #4582ec, 0 1px 2px rgba(0,0,0,0.24); */
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin-top: 10em;
+    background: white;
+    padding: 3em;
+    background: #8fb0e814;
+    justify-content: space-evenly;
+}
+.img-class-2 {
+    height: 35em;
+    width: 20em;
+}
+.home-container-img{
+    display:flex;
+    flex-direction:column;
+}
+.home-container-buttons-main {
+    display: flex;
+    flex-direction: column;
+}
+.button-classes{
+    margin-bottom:3em;
+    margin-top:0.5em;
+}
+.card-header{
+    border-bottom:0;
+}
+.card-body ul {
+    list-style: none;
+}
+
+.card-body ul li::before {
+    content: "\2022";
+    color: #4582ec;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+.custom-img-3 {
+    height: 20em;
+    width: 20em;
+}
+
+
+.spinner {
+    width: 1em;
+    height: 1em;
+    border-top: 0.25em solid #4582ec;
+    border-right: 0.25em solid transparent;
+    animation: spinner 0.4s linear infinite;
+    border-radius: 50%;
+    margin: auto;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}

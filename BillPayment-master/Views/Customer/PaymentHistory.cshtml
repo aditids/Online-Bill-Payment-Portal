@@ -1,0 +1,52 @@
+﻿<div class="container">
+    <div class="jumbotron">
+        <center> <p class="display-4">All payments</p></center>
+
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Payment Id</th>
+                <th scope="col">Bill type</th>
+                <th scope="col">Bill Amount</th>
+                <th scope="col">Payment Month</th>
+
+
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+</div>
+
+<script>
+    var Payments = @Html.Raw(Json.Encode((ViewBag.PaymentList)));
+    try {
+
+        Payments.map(payment => {
+            $('#tbody').append(`<tr>
+                           
+                            
+                            <td class="row-index">
+                            ${payment.Id}
+                            </td>
+                           <td class="row-index">
+                            ${payment.BillType}
+                            </td>
+                                <td class="row-index">
+                            ${payment.BillAmount}
+                            </td>
+                            <td class="row-index">
+                            ${payment.PaymentTime}
+                            </td>
+
+                           
+                            </tr>`);
+        })
+      
+    } catch (e) {
+
+    }
+   
+
+    console.log(Payments)
+</script>

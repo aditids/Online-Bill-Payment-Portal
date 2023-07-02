@@ -1,0 +1,33 @@
+﻿
+<div id="creditcard">
+    <div id="top-card">
+        <h6 id="payment">PAYMENT<br />DETAILS</h6>
+        <h3 id="visa">VISA</h3>
+    </div>
+    <div class="row align-items-center">
+        <div class="col">
+            <label>Enter card number</label>
+            <input type="number" name="card-number" value="" id="card-number" class="form-control" />
+        </div>
+
+    </div>
+
+
+    <div class="row align-items-center">
+        <div class="col">
+            <label>Validity</label>
+            <input type="date" name="card-date" value="" id="card-date" class="form-control" />
+        </div>
+        <div class="col">
+            <label>CVV</label>
+            <input type="number" name="card-cvv" value="" id="card-cvv" class="form-control" />
+        </div>
+
+    </div>
+
+    <button type="submit"
+            onclick="savePaymentDetails('card')"
+            id="checkout-submit" class="btn btn-primary mt-4 w-25 custom-btn-1">
+        Checkout
+    </button>
+</div>

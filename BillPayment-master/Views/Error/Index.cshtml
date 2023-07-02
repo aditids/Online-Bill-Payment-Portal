@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+
+                <center>
+                    <img class="img-class custom-img-3" src="@Url.Content("~/Content/Images/server-down.svg")" />
+                </center>
+                <span class="display-3 d-block">@ViewBag.StatusCode</span>  
+                <div class="mb-lg-5">Something went wrong.</div>
+                <a href="/" class="btn btn-link">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "PayBill";
+
+}
+
+<div class="container mt-5" id="main-container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" id="select-bill">
+            <a id="a-select-bill" class="nav-link" href="#">Select bill type</a>
+        </li>
+        <li class="nav-item" id="select-vendor">
+            <a id="a-select-vendor" class="nav-link" href="#">Amount</a>
+        </li>
+        <li class="nav-item" id="pay">
+            <a id="a-pay" class="nav-link" href="#">Pay</a>
+        </li>
+
+    </ul>
+    <div id="select-bill-content" class="tab-content">
+
+        <div class="select-bill-main">
+            <input type="hidden" value="@Session["user_id"]" id="myHiddenVar" />
+
+            <label>Select bill type</label>
+            <select id="bill-types" class="custom-select w-50 custom-select-1 mt-2">
+                <option value="">Select</option>
+                <option value="Electricity">Electricity</option>
+                <option value="DTH">DTH</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Telephone">Telephone</option>
+                <option value="Insurance">Insurance</option>
+                <option value="Loan Account">Loan Account</option>
+                <option value="Others">Others</option>
+            </select>
+            <button type="submit"
+                    onclick="onBillTypeSubmit()"
+                    id="bill-type-submit" class="btn btn-primary mt-4 w-25 custom-btn-1">
+                Next
+            </button>
+        </div>
+
+    </div>
+    <div id="select-vendor-content" class="tab-content">
+        <div class="select-bill-main">
+
+            <label>Select vendor from menu</label>
+            <select id="vendor-list" class="custom-select w-50 custom-select-1 mt-2">
+                <option value="">Select</option>
+            </select>
+            <br />
+            <label>Amount to be paid</label>
+            <input type="number" name="amount" value="" id="amount" class="form-control w-50" min="0" required/>
+            <button type="submit"
+                    onclick="onVendorTypeSubmit()"
+                    id="vendor-type-submit" class="btn btn-primary mt-4 w-25 custom-btn-1">
+                Next
+            </button>
+        </div>
+    </div>
+    <div id="pay-bill-content" class="tab-content">
+        <p class="header-payment">Please select the payment method</p>
+        <div class="payment-div-main w-50">
+            <a id="card" onclick="selectPaymentMethod('card')" href="#" class="payment-div-active-inactive">Credit/Debit card</a>
+            <a id="ib" onclick="selectPaymentMethod('ib')" href="#" class="payment-div-active-inactive">Internet Banking</a>
+            <a id="paytm" onclick="selectPaymentMethod('paytm')" href="#" class="payment-div-active-inactive">Paytm</a>
+            <a id="gpay" onclick="selectPaymentMethod('gpay')" href="#" class="payment-div-active-inactive">Google Pay</a>
+            <a id="wallet" onclick="selectPaymentMethod('wallet')" href="#" class="payment-div-active-inactive">E-Wallet</a>
+        </div>
+        <br /><br />
+        <div id="payment-metod">
+
+            @Html.Partial("_CreditCard")
+
+            <div id="internet-banking-div">
+                <label>Account number</label>
+                <input type="number" name="ib-number" value="" id="ib-number" class="form-control w-50" pattern="[789][0-9]{9}" required />
+                <label>Password</label>
+                <input type="password" name="ib-password" value="" id="ib-password" class="form-control w-50" />
+                <button type="submit"
+                        onclick="savePaymentDetails('ib')"
+                        id="checkout-submit-2" class="btn btn-primary mt-4 w-25 custom-btn-1">
+                    Checkout
+                </button>
+
+            </div>
+
+            <div id="paytm-div">
+                <label for="paytm-number">Mobile number</label>
+                <input type="number" name="paytm-number" value="" id="paytm-number" pattern="[789][0-9]{9}" class="form-control w-50" required/>
+                <a href="#" onclick="fetchBalance()">Fetch balance </a><br /><span id="paytm-balance"></span>
+                <button type="submit"
+                        onclick="savePaymentDetails('paytm')"
+                        id="checkout-submit-3" class="btn btn-primary mt-4 w-25 custom-btn-1">
+                    Checkout
+                </button>
+            </div>
+
+            <div id="wallet-div">
+                <h6>You've currently Rs. 100000 in your wallet</h6>
+                <br />
+                <button type="submit"
+                        onclick="savePaymentDetails('wallet')"
+                        id="checkout-submit-4" class="btn btn-primary mt-4 w-25 custom-btn-1">
+                    Checkout
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/toastr.js"></script>
+
+<script src="~/Scripts/CustomerScripts.js"></script>

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "AdminLogin";
+}
+
+@model BillPayment.Models.User
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            @using (Html.BeginForm("AdminLogin", "Auth", FormMethod.Post))
+            {
+                <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h1>Login</h1>
+                            <p class="text-h3">
+                                for Admin
+                            </p>
+                        </div>
+                    </div>
+                    @if (ViewBag.ResultAL == false)
+                    {
+                        <div class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Oh snap!!</strong>Failed! @ViewBag.errorAL
+                        </div>
+                    }
+
+                    <center>
+                        <img class="img-class custom-img-1" src="@Url.Content("~/Content/Images/login.svg")" />
+                    </center>
+
+                    <div class="row align-items-center mt-4">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", required = "required", type = "text", placeholder = "Username" })
+                    </div>
+                    <div class="row align-items-center mt-4">
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", required = "required", type = "password", placeholder = "Password" })
+
+                    </div>
+                    <div class="row justify-content-end mt-4">
+                        <div class="col form-btn">
+                            <div class="spinner" style=font-size:16px></div>
+
+                            <button type="submit" class="btn btn-primary">Login</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+    <span class="clickhere">Are you a new admin?<a href="/Auth/AdminRegistration">Click here</a> </span><br />
+    <span class="clickhere"><a href="/Auth/Index">Go to the Main Page</a> </span>
+</section>
+
+<script>
+    $(document).ready(() => {
+        $(".spinner").hide()
+
+        $("form").submit(function () {
+            $(".spinner").show()
+            $("button").hide()
+
+        });
+    })
+    if (@Html.Raw(Json.Encode(ViewBag.ResultAL))===false)
+    {
+        $(".spinner").hide()
+        $("button").show()
+    }
+
+
+</script>

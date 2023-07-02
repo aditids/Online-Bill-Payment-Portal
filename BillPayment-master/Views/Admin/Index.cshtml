@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <div class="jumbotron">
+        <center> <p class="display-4">Vendors list</p></center>
+
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Vendor ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+</div>
+
+
+<script src="~/Scripts/toastr.js"></script>
+<script type="text/javascript">
+    $(document).ready(() => {
+
+
+        UpdateVendorTable();
+    })
+
+    const UpdateVendorTable = () => {
+
+        $.ajax({
+            url: "/Admin/GetInvalidatedVendorList",   //url of {controller/action}
+            type: "get",  //type of request (http verb)
+            success: (response) => {
+                let rowIdx = 0;
+                console.log(response)
+                // on successful response
+                response.map(value => {
+                    let rowIndex = ++rowIdx;
+                    $('#tbody').append(`<tr id="R${rowIndex}">
+                            <td class="row-index">
+                            <a href="/Admin/VendorDetails/${value.UserId}"> ${value.UserName}</a>
+                            </td>
+                            <td class="row-index">
+                           <a href="/Admin/VendorDetails/${value.UserId}">  ${value.FirstName + " " + value.LastName}</a>
+                            </td>
+                            <td class="row-index">
+                            ${value.ContactNumber}
+                            </td>
+                           <td class="row-index">
+
+
+                            <button class="btn btn-danger"
+                            type="button"
+                            onClick="updateVendor(${value.UserId},${rowIndex},${false})"
+                            >Reject</button>
+
+                            <button class="btn btn-success"
+                            type="button"
+                            onClick="updateVendor(${value.UserId},${rowIndex},${true})"
+                            >Accept</button>
+                            </td>
+                            </tr>`);
+                })
+            },
+            error: (xhr) => {
+                //on error response
+            }
+        });
+
+    }
+    const updateVendor = (vendorId, rowIndex, payload) => {
+        console.log(vendorId, rowIndex)
+
+        $.ajax({
+            url: `/Admin/UpdateVendorList`,   //url of {controller/action}
+            type: "post",  //type of request (http verb)
+            data: {
+                VendorId: vendorId,
+                Validate: payload
+            },
+            success: (response) => {
+                if (payload) {
+                    toastr.success("Successfully accepted")
+                } else {
+                    toastr.success("Successfully Rejected")
+                }
+
+                if (response === "Success") {
+                    console.log(response)
+                    $(`#R${rowIndex}`).remove();
+                }
+
+            },
+            error: (xhr) => {
+                toastr.error("Something went wrong...")
+                //on error response
+            }
+        });
+    }
+</script>
